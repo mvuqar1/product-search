@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getAllApi } from "../Api/Api"
@@ -19,14 +19,14 @@ export default function Products() {
   const navigate = useNavigate();
 
 
-  const hadlerSearch = (str) => {
-    setStrValue(str)
+  const hadlerSearch = useCallback((str) => {
+    setStrValue(str);
     setFilteredCataloq(
       cataloq.filter((item) => (
         item.title.toLowerCase().includes(str.toLowerCase())
       ))
-    )
-  }
+    );
+  }, [cataloq]);
 
   useEffect(() => {
     navigate({ pathname, search: `?search=${strValue}` })

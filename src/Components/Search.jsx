@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Search({ cb = Function.prototype }) {
+export default function Search({ cb }) {
     const [value, setValue] = useState("")
-    // const handlerKey = (e) => {
-    //     if (e.key ==="Enter") {
-    //         handlerSubmit()
-    //     }
-    // }
 
     useEffect(() => {
         cb(value)
-    }, [value])
-    // const handlerSubmit = () => {
-    //     console.log('inside handleSUBMIT: ', value)
-    //     cb(value);
-    // }
-
+    }, [cb, value])
+  
     return (
         <div className='search-container'>
 
